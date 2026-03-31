@@ -4,12 +4,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>RA Prueba Final</title>
-    <!-- Librerías desde un servidor más rápido -->
+    <!-- Librerías -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aframe/1.2.0/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js@3.3.2/aframe/build/aframe-ar.js"></script>
 </head>
 <body style="margin: 0; overflow: hidden;">
-    <!-- Cargamos la escena con gestión de errores básica -->
     <a-scene 
         embedded 
         arjs="sourceType: webcam; debugUIEnabled: false;"
@@ -21,7 +20,7 @@
 
         <a-camera gps-camera rotation-reader></a-camera>
 
-        <!-- Poné tus coordenadas acá abajo -->
+        <!-- coordenadas  -->
         <a-entity 
             gltf-model="#dino"
             gps-entity-place="latitude: -34.81296; longitude: -58.44356;" 
@@ -30,7 +29,7 @@
     </a-scene>
 
     <script>
-        // Si después de 5 segundos sigue blanca, avisamos
+        
         window.addEventListener('load', () => {
             setTimeout(() => {
                 if (!document.querySelector('video')) {
