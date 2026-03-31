@@ -3,31 +3,41 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>RA Modelo 3D</title>
-    <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
-    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+    <title>RA Prueba Final</title>
+    <!-- Librerías desde un servidor más rápido -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aframe/1.2.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js@3.3.2/aframe/build/aframe-ar.js"></script>
 </head>
 <body style="margin: 0; overflow: hidden;">
+    <!-- Cargamos la escena con gestión de errores básica -->
     <a-scene 
-        vr-mode-ui="enabled: false"
         embedded 
-        arjs="sourceType: webcam; debugUIEnabled: false;">
+        arjs="sourceType: webcam; debugUIEnabled: false;"
+        vr-mode-ui="enabled: false">
         
         <a-assets>
-            <!-- Este es el link al modelo 3D (un Triceratops) -->
-            <a-asset-item id="dino" src="https://arjs-resources.pinarkilic.com/assets/triceratops.glb"></a-asset-item>
+            <a-asset-item id="dino" src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/examples/image-tracking/nft/trex/scene.gltf"></a-asset-item>
         </a-assets>
 
         <a-camera gps-camera rotation-reader></a-camera>
 
-        <!-- IMPORTANTE: Cambiá latitud y longitud por las tuyas para verlo -->
+        <!-- Poné tus coordenadas acá abajo -->
         <a-entity 
             gltf-model="#dino"
             gps-entity-place="latitude: -34.81296; longitude: -58.44356;" 
-            scale="0.5 0.5 0.5"
-            position="0 0 0">
+            scale="0.1 0.1 0.1">
         </a-entity>
-
     </a-scene>
+
+    <script>
+        // Si después de 5 segundos sigue blanca, avisamos
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                if (!document.querySelector('video')) {
+                    alert("La cámara no inició. Revisá los permisos de tu navegador.");
+                }
+            }, 5000);
+        });
+    </script>
 </body>
 </html>
