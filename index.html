@@ -1,25 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset='utf-8'>
-    <title>RA Prueba</title>
+    <meta charset="utf-8">
+    <title>Prueba GPS GitHub</title>
     <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
-    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
 </head>
 <body style="margin: 0; overflow: hidden;">
-    <div id="btn-permiso" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 9999; background: white; padding: 20px; border: 2px solid red;">
-        <button onclick="activar()">ACTIVAR CÁMARA</button>
-    </div>
-    <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false;">
+    <a-scene 
+        vr-mode-ui="enabled: false"
+        embedded 
+        arjs="sourceType: webcam; debugUIEnabled: false;">
+        
         <a-camera gps-camera rotation-reader></a-camera>
-        <a-box gps-entity-place="latitude: -34.60000; longitude: -58.30000;" scale="1 2 1" material="color: red;"></a-box>
+        
+        <!-- El objeto debe estar cerca de tu posición real para verlo -->
+        <a-box 
+            gps-entity-place="latitude: -34.81296; longitude: -58.44356;;" 
+            scale="1 1 1" 
+            material="color: red;">
+        </a-box>
     </a-scene>
-    <script>
-        function activar() {
-            navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } })
-            .then(() => { document.getElementById('btn-permiso').style.display='none'; location.reload(); })
-            .catch(err => alert("Error: " + err.name));
-        }
-    </script>
 </body>
 </html>
