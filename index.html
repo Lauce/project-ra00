@@ -2,41 +2,23 @@
 <html>
 <head>
     <meta charset='utf-8'>
-    <title>RA Test - Datos en tiempo real</title>
-    <!-- Librerías de AR.js y A-Frame -->
+    <title>RA Prueba</title>
     <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
     <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
 </head>
-
 <body style="margin: 0; overflow: hidden;">
-    <a-scene 
-        vr-mode-ui="enabled: false"
-        embedded
-        arjs="sourceType: webcam; debugUIEnabled: false;">
-
-        <!-- La cámara que sigue tu ubicación GPS -->
+    <div id="btn-permiso" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 9999; background: white; padding: 20px; border: 2px solid red;">
+        <button onclick="activar()">ACTIVAR CÁMARA</button>
+    </div>
+    <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false;">
         <a-camera gps-camera rotation-reader></a-camera>
-
-        <!-- Representación de un dato satelital (Punto A) -->
-        <!-- REEMPLAZÁ LAS COORDENADAS ABAJO -->
-        <a-box
-            gps-entity-place="latitude: -34.81296; longitude: -58.44356;"
-            scale="1 2 1" 
-            material="color: red; opacity: 0.6;">
-        </a-box>
-
+        <a-box gps-entity-place="latitude: -34.81296; longitude: -58.44356;" scale="1 2 1" material="color: red;"></a-box>
     </a-scene>
     <script>
-        function activarCamara() {
-            // Esto obliga al navegador a pedir permiso por interacción del usuario
+        function activar() {
             navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } })
-            .then(function(stream) {
-                document.getElementById('boton-permiso').style.display = 'none';
-                location.reload(); // Recarga para aplicar el permiso ya concedido
-            })
-            .catch(function(err) {
-                alert("Error crítico: " + err.name);
-            });
+            .then(() => { document.getElementById('btn-permiso').style.display='none'; location.reload(); })
+            .catch(err => alert("Error: " + err.name));
         }
     </script>
 </body>
