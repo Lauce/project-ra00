@@ -21,10 +21,23 @@
         <!-- REEMPLAZÁ LAS COORDENADAS ABAJO -->
         <a-box
             gps-entity-place="latitude: -34.81296; longitude: -58.44356;"
-            scale="10 30 10" 
+            scale="1 2 1" 
             material="color: red; opacity: 0.6;">
         </a-box>
 
     </a-scene>
+    <script>
+        function activarCamara() {
+            // Esto obliga al navegador a pedir permiso por interacción del usuario
+            navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } })
+            .then(function(stream) {
+                document.getElementById('boton-permiso').style.display = 'none';
+                location.reload(); // Recarga para aplicar el permiso ya concedido
+            })
+            .catch(function(err) {
+                alert("Error crítico: " + err.name);
+            });
+        }
+    </script>
 </body>
 </html>
